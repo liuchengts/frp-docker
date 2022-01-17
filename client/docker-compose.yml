@@ -1,0 +1,6 @@
+frp :
+  container_name: frp-client
+  build: docker
+  restart: always
+  environment:
+     TZ : "Asia/Shanghai"

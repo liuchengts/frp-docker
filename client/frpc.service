@@ -1,0 +1,17 @@
+[Unit]
+Description=Frp Client Service
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+Restart=on-failure
+RestartSec=5s
+ExecStart=/etc/frp/frpc -c /etc/frp/frpc.ini
+ExecReload=/etc/frp/frpc reload -c /etc/frp/frpc.ini
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system
+

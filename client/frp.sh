@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # !/bin/sh
 set -m
+VERSION=0.38.0
+MODE=frpc
 DOCKER_NAME="frp-client"
 WAR_PATH="docker/frp"
+FRP_NAME="/etc/frp_${VERSION}_linux_amd64"
 function cp_app() {
-    docker cp ${WAR_PATH}/frpc.ini ${DOCKER_NAME}:/usr/local/frpc/frpc.ini
+    docker cp ${WAR_PATH}/${MODE}.ini ${DOCKER_NAME}:${FRP_NAME}/${MODE}.ini
 }
 function restart_app() {
     docker restart ${DOCKER_NAME}

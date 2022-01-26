@@ -3,8 +3,10 @@ frp :
   build: docker
   restart: always
   ports:
-     - "6010:6010"
-     - "7000:7000"
-     - "7500:7500"
+#     - 6000-6100:6000-6100
+#     - 7000:7000
+#     - 7500:7500
+#     - 445:445
+     - 81:81
   environment:
      TZ : "Asia/Shanghai"

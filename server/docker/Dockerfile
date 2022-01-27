@@ -1,22 +1,19 @@
 FROM alpine:latest
 ENV MODE=frps
-ENV INSTALL_DIRECTORY=/etc
+ENV INSTALL_ROOT=/etc
+ENV INSTALL_DIRECTORY=${INSTALL_ROOT}/frp
 ENV VERSION=0.38.0
 ENV FRP_NAME=frp_${VERSION}_linux_amd64
 ENV FRP_TAR_URL=https://github.com/fatedier/frp/releases/download/v${VERSION}/${FRP_NAME}.tar.gz
-ENV SERVICE_BIN=${INSTALL_DIRECTORY}/${FRP_NAME}/${MODE}
-ENV SERVICE_BIN_INI=${INSTALL_DIRECTORY}/${FRP_NAME}/${MODE}.ini
-
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk update upgrade \
-    && apk add bash bash-doc bash-completion openrc \
-    && echo ${FRP_TAR_URL} \
-    && wget -O /tmp/${FRP_NAME}.tar.gz ${FRP_TAR_URL} \
-    && tar -zxvf /tmp/${FRP_NAME}.tar.gz \
-    && mv ${FRP_NAME} ${INSTALL_DIRECTORY} \
-    && rm -rf /tmp/frp.tar.gz ${FRP_NAME} \
-    && rc-update add ${SERVICE_BIN} \
-    && echo "#!/bin/bash \n ./rc-service ${SERVICE_BIN} -c ${SERVICE_BIN_INI}" > ./entrypoint.sh \
+    && apk add bash bash-doc bash-completion \
+    && wget -nvO /tmp/${FRP_NAME}.tar.gz ${FRP_TAR_URL} \
+    && tar -zxvf /tmp/${FRP_NAME}.tar.gz -C ${INSTALL_ROOT} \
+    && mv ${INSTALL_ROOT}/${FRP_NAME} ${INSTALL_DIRECTORY} \
+    && rm -rf /tmp/${FRP_NAME}.tar.gz \
+    && echo -e "#!/bin/bash \n cd ${INSTALL_DIRECTORY} \n ./${MODE} -c ${MODE}.ini" > ./entrypoint.sh \
     && chmod +x ./entrypoint.sh
 
-COPY frp/${MODE}.ini ${SERVICE_BIN_INI}
+COPY frp/${MODE}.ini ${INSTALL_DIRECTORY}
 ENTRYPOINT ["./entrypoint.sh"]

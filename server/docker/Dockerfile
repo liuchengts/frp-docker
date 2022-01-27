@@ -17,4 +17,4 @@ RUN apk update upgrade \
     && rc-update add ${SERVICE_BIN}
 
 COPY frp/${MODE}.ini ${SERVICE_BIN_INI}
-ENTRYPOINT [ "rc-service","${SERVICE_BIN}","-c","${SERVICE_BIN_INI}" ]
+ENTRYPOINT [ "rc-service ${SERVICE_BIN}","-c ${SERVICE_BIN_INI}" ]

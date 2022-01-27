@@ -1,8 +1,8 @@
 FROM alpine:latest
-ENV MODE=frps
+ARG MODE=frps
+ARG VERSION=0.38.0
 ENV INSTALL_ROOT=/etc
 ENV INSTALL_DIRECTORY=${INSTALL_ROOT}/frp
-ENV VERSION=0.38.0
 ENV FRP_NAME=frp_${VERSION}_linux_amd64
 ENV FRP_TAR_URL=https://github.com/fatedier/frp/releases/download/v${VERSION}/${FRP_NAME}.tar.gz
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories

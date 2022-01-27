@@ -3,9 +3,9 @@
 set -m
 VERSION=0.38.0
 MODE=frps
-DOCKER_NAME="frp-client"
+DOCKER_NAME="frp-server"
 WAR_PATH="docker/frp"
-FRP_NAME="/etc/frp_${VERSION}_linux_amd64"
+FRP_NAME="/etc/frp"
 function cp_app() {
     docker cp ${WAR_PATH}/${MODE}.ini ${DOCKER_NAME}:${FRP_NAME}/${MODE}.ini
 }

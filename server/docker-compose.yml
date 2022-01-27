@@ -2,10 +2,10 @@ frp :
   container_name: frp-server
   build: docker
   restart: always
-  ports:
-     - "7000:7000"
-     - "7500:7500"
-     - "445:445"
-     - "81:81"
+#  ports:
+#     - "7000:7000"
+#     - "7500:7500"
+#     - "445:445"
+#     - "81:81"
   environment:
      TZ : "Asia/Shanghai"

@@ -14,7 +14,9 @@ RUN apk update upgrade \
     && tar -zxvf /tmp/${FRP_NAME}.tar.gz \
     && mv ${FRP_NAME} ${INSTALL_DIRECTORY} \
     && rm -rf /tmp/frp.tar.gz ${FRP_NAME} \
-    && rc-update add ${SERVICE_BIN}
+    && rc-update add ${SERVICE_BIN} \
+    && echo "#!/bin/bash \n ./rc-service ${SERVICE_BIN} -c ${SERVICE_BIN_INI}" > ./entrypoint.sh \
+    && chmod +x ./entrypoint.sh
 
 COPY frp/${MODE}.ini ${SERVICE_BIN_INI}
-ENTRYPOINT [ "rc-service ${SERVICE_BIN}","-c ${SERVICE_BIN_INI}" ]
+ENTRYPOINT ["./entrypoint.sh"]

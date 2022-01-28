@@ -9,9 +9,11 @@ docker环境部署frp
 - 构建因为网络问题失败的解决办法
   - 开启科学上网重新构建
   - 使用现成的版本
-    - frp-server: `docker pull registry.cn-hangzhou.aliyuncs.com/lcts/frp-server:frp_0.38.0` 
-    - frp-client: `docker pull registry.cn-hangzhou.aliyuncs.com/lcts/frp-client:frp_0.38.0`
-    
+    - `frp-server`: `docker pull registry.cn-hangzhou.aliyuncs.com/lcts/frp-server:frp_0.38.0` 
+    - `frp-client`: `docker pull registry.cn-hangzhou.aliyuncs.com/lcts/frp-client:frp_0.38.0`
+- `frp.sh`脚本运行失败的解决方案 
+  - `chmod +x frp.sh`
+  - `sudo ./frp.sh`
 # 使用
 - `frp`目录下为相应的配置文件，自行更改即可。具体配置请参照`frp`官方文档
 - `frp.sh`会同步配置文件进容器，并重新启动

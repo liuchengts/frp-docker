@@ -31,23 +31,30 @@ function modeHandle() {
 function operateHandle() {
     case $OPERATE in
        build)
-          build
+            build_app
+        ;;
+       create)
+            create_app
         ;;
        start)
             start_app
         ;;
        stop)
-            stop
+            stop_app
         ;;
        restart)
             restart_app
         ;;
        *)
-             echo "Usage: $0 {build |start |restart |stop}" >&2
+             echo "Usage: $0 {build |create |start |restart |stop}" >&2
       esac
 }
 
-function build() {
+function create_app() {
+  sudo docker-compose -f ${FILE_NAME} up -d
+}
+
+function build_app() {
   sudo docker-compose -f ${FILE_NAME} build
 }
 

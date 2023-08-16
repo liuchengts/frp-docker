@@ -15,5 +15,5 @@ RUN apk update upgrade \
     && echo -e "#!/bin/bash \n cd ${INSTALL_DIRECTORY} \n ./${MODE} -c ${MODE}.ini" > ./entrypoint.sh \
     && chmod +x ./entrypoint.sh
 
-COPY frp/${MODE}.ini ${INSTALL_DIRECTORY}
+COPY ${MODE}.ini ${INSTALL_DIRECTORY}
 ENTRYPOINT ["./entrypoint.sh"]

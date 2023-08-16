@@ -1,7 +1,7 @@
 FROM alpine:latest
-ARG MODE=frps
-ARG VERSION=0.38.0
-ENV INSTALL_ROOT=/etc
+ARG MODE
+ARG VERSION
+ARG INSTALL_ROOT
 ENV INSTALL_DIRECTORY=${INSTALL_ROOT}/frp
 ENV FRP_NAME=frp_${VERSION}_linux_amd64
 ENV FRP_TAR_URL=https://github.com/fatedier/frp/releases/download/v${VERSION}/${FRP_NAME}.tar.gz

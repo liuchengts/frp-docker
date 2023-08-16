@@ -1,0 +1,16 @@
+version: '2'
+services:
+  frps:
+    container_name: frp-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VERSION=0.51.3   # 需要的版本 https://github.com/fatedier/frp/releases/tag/v0.51.3
+        - INSTALL_ROOT=/etc # 在容器内的安装位置
+        - MODE=frps # 运行模式
+    ports:
+       - "7000-7500:7000-7500" # 暴露端口范围，预留 7000、7500为必须端口
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"

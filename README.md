@@ -17,7 +17,7 @@
 - 停止
     - `frp-server` : `sudo ./frp.sh s stop`
     - `frp-client` : `sudo ./frp.sh c stop`
-- 重启（会更新`frpc.ini 或 frps.ini`）
+- 重启（会更新当前文件夹中的 `frpc.ini 或 frps.ini` 到容器）
     - `frp-server` : `sudo ./frp.sh s restart`
     - `frp-client` : `sudo ./frp.sh c restart`
 - 参数说明

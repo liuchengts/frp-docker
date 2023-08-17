@@ -8,7 +8,7 @@ services:
       args:
         - VERSION=0.51.3 # 需要的版本 https://github.com/fatedier/frp/releases/tag/v0.51.3
         - INSTALL_ROOT=/etc # 在容器内的安装位置
-        - MODE=frps # 运行模式
+        - MODE=frpc # 运行模式
     restart: always
     environment:
       TZ: "Asia/Shanghai"
